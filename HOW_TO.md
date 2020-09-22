@@ -1,5 +1,5 @@
 # Requirements
-We have conducted our tests using __Ubuntu 20.04__, but the tools installation can be done on any linux distribution, or Windows OS (installation steps on Windows are not mentioned)
+We have conducted our tests using __Ubuntu 20.04__ and __Windows OS__, were necessary, but the tools installation can be done on any linux distribution, or Windows OS (installation steps on Windows are not mentioned)
 
 
 |Tool Name| Installation| Additional Notes|
@@ -58,7 +58,14 @@ In order to determine whether the access is allowed or not, use the below comman
 
 The above reply shows the SAProuter connection list, this information can be very critical as it may allow routing from the internet to the internal local network, this information is usually available in and can be retrieved from the SAPROUTTAB file.
 
-### SAP Gateway
+
+To automate the process for better detection you can use the python script *inforequest_saprouter_WIN.py* found [here](SAP_Research_Tools).
+
+To run the script use the below syntax:
+>
+> $ python inforequest_saprouter_WIN.py <filename_with_ip_addresses>
+
+### SAP RFC Gateway
 
 SAP RFC Gateway is a gateway service which standalone, or as part of an SAP ABAP system provides service for the proprietary RFC protocol. Unpatched, or misconfigured installations can yield to full system compromise. Up to unauthenticated remote code execution vulnerabilities. By default the RFC protocol is not encrypted. Communication encryption has to be setup by the use of [SNC](https://help.sap.com/viewer/e73bba71770e4c0ca5fb2a3c17e8e229/LATEST/en-US/e656f466e99a11d1a5b00000e835363f.html).
 
@@ -70,6 +77,15 @@ If the initial scan has not identified any open ports for the SAP Gateway, you c
 
 > $ nmap -sV -R -p 3300 -Pn <target>
 
+To automate the process for better detection you can use the files found in the 3300 zip file found [here](SAP_Research_Tools). Using the python script found in the files, read the SAP info where possible (from windows machine and adjust in script sysnr=XX to correct system number):
+
+>
+> $ py.exe SAPinfo_WIN_v2.py <filename_with_ip_addresses>
+
+To check whether the gateway is vulnerable use the Gateway_Scanner_RESEARCH_V0.1.py file found [here](SAP_Research_Tools)
+
+>
+> py.exe Gateway_Scanner_RESEARCH_V0.1.py <filename_with_ip_addresses>
 
 
 ### SAP Internet Graphic Server
