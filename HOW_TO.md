@@ -19,11 +19,11 @@ After installing the appropriate tools, we start by detecting SAP services that 
 
 Use NMAP-ERPSCAN service probes to find open SAP services for your organization. (External and internal testing is recommended)
 
-> *$ git clone git://github.com/gelim/nmap-erpscan*
+> __*$ git clone git://github.com/gelim/nmap-erpscan*__
 >
-> *$ cd nmap-erpscan*
+> __*$ cd nmap-erpscan*__
 >
-> *$ nmap -n --open --datadir . -sV -p $(./sap_ports.py) $TARGET*
+> __*$ nmap -n --open --datadir . -sV -p $(./sap_ports.py) $TARGET*__
 >> __Changing the data directory (--datadir) helps to better identify SAP services as they are not added to the default data directory of NMAP__
 
 
@@ -37,7 +37,7 @@ SAPouter [product info](https://support.sap.com/en/tools/connectivity-tools/sapr
 
 If the initial scan has not identified any open ports for the SAPRouter, you can try to scan with below command specifying the SAPRouter port if it is not the default one.
 
-> $ nmap -sV -n -p 3299 -Pn $TARGET -oX output_nmap_3299.txt
+> __*$ nmap -sV -n -p 3299 -Pn $TARGET -oX output_nmap_3299.txt*__
 >
 > Identifying SAPRouter. *Red circle shown in the image below*
 
@@ -48,7 +48,7 @@ In order to further test the SAPRouter and determine whether access is allowed o
 
 In order to determine whether the access is allowed or not, use the below command.
 
-> $ saprouter -L -H <target>
+> __*$ saprouter -L -H <target>*__
 
 ##### Access denied
 <img src="saprouter_denied.png" /><br>
@@ -63,7 +63,7 @@ To automate the process for better detection you can use the python script *info
 
 To run the script use the below syntax:
 >
-> $ python inforequest_saprouter_WIN.py <filename_with_ip_addresses>
+> __*$ python inforequest_saprouter_WIN.py <filename_with_ip_addresses>*__
 
 ### SAP RFC Gateway
 
@@ -75,17 +75,17 @@ SAP RFC Gateway is a gateway service which standalone, or as part of an SAP ABAP
 
 If the initial scan has not identified any open ports for the SAP Gateway, you can try to scan with below command specifying the SAP Gateway port if it is not the default one.
 
-> $ nmap -sV -R -p 3300 -Pn <target>
+> __*$ nmap -sV -R -p 3300 -Pn <target>*__
 
 To automate the process for better detection you can use the files found in the 3300 zip file found [here](SAP_Research_Tools). Using the python script found in the files, read the SAP info where possible (from windows machine and adjust in script sysnr=XX to correct system number):
 
 >
-> $ py.exe SAPinfo_WIN_v2.py <filename_with_ip_addresses>
+> __*$ py.exe SAPinfo_WIN_v2.py <filename_with_ip_addresses>*__
 
 To check whether the gateway is vulnerable use the Gateway_Scanner_RESEARCH_V0.1.py file found [here](SAP_Research_Tools)
 
 >
-> py.exe Gateway_Scanner_RESEARCH_V0.1.py <filename_with_ip_addresses>
+> __*$ py.exe Gateway_Scanner_RESEARCH_V0.1.py <filename_with_ip_addresses>*__
 
 
 ### SAP Internet Graphic Server
@@ -98,7 +98,7 @@ SAP Internet Graphic Server (IGS) provides services to generate web graphics. It
 
 If the initial scan has not identified any open ports for the SAP Internet Graphic Server, you can try to scan with below command specifying the SAP Internet Graphic Server port if it is not the default one.
 
-> $ nmap -sV -R -p 40080 -Pn <target>
+> __*$ nmap -sV -R -p 40080 -Pn <target>*__
 
 ### SAP Message Server Internal Port
 
@@ -110,7 +110,7 @@ SAP Message Server Internal Port provides cluster management services between th
 
 If the initial scan has not identified any open ports for the SAP Message Server Internal, you can try to scan with below command specifying the SAP Message Server Internal port if it is not the default one.
 
-> $ nmap -sV -R -p 3900 -Pn <target>
+> __*$ nmap -sV -R -p 3900 -Pn <target>*__
 
 ### HANA Database
 
@@ -120,4 +120,4 @@ If the initial scan has not identified any open ports for the SAP Message Server
 
 If the initial scan has not identified any open ports for the HANA Database, you can try to scan with below command specifying the HANA Database port if it is not the default one.
 
-> $ nmap -sV -R -p 30015 -Pn <target>
+> __*$ nmap -sV -R -p 30015 -Pn <target>*__
