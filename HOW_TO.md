@@ -74,14 +74,26 @@ If the initial scan has not identified any open ports for the SAP Gateway, you c
 |:--------|:------------|:----------------|
 |40080 | NMAP, NMAP erpscan|
 
+If the initial scan has not identified any open ports for the SAP Internet Graphic Server, you can try to scan with below command specifying the SAP Internet Graphic Server port if it is not the default one.
+
+> $ nmap -sV -R -p 40080 -Pn <target>
+
 ### SAP Message Server Internal Port
 
 |Port | Used Tools| Additional Notes|
 |:--------|:------------|:----------------|
 |3900 | NMAP, NMAP erpscan|
 
+If the initial scan has not identified any open ports for the SAP Message Server Internal, you can try to scan with below command specifying the SAP Message Server Internal port if it is not the default one.
+
+> $ nmap -sV -R -p 3900 -Pn <target>
+
 ### HANA Database
 
 |Port | Used Tools| Additional Notes|
 |:--------|:------------|:----------------|
 |30015 | NMAP, NMAP erpscan|
+
+If the initial scan has not identified any open ports for the HANA Database, you can try to scan with below command specifying the HANA Database port if it is not the default one.
+
+> $ nmap -sV -R -p 30015 -Pn <target>
