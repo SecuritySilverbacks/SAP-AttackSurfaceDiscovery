@@ -114,6 +114,8 @@ If the initial scan has not identified any open ports for the SAP Message Server
 
 ### HANA Database
 
+The HANA Database SQL client port of the systems index server provides access to the SQL/MDX functionality of the database via JDBC/ODBC. Database client for administration and development need access to this service. The encrypted communication can be configured using TLS. Wide exposure administrative database services comes with inherent risks. Specifically weak passwords, insufficient TLS configuration, hardening and patching of of the HANA system can expose an attach surface for various exploit scenarios.
+
 |Port | Used Tools| Additional Notes|
 |:--------|:------------|:----------------|
 |30015 | NMAP, NMAP erpscan|
