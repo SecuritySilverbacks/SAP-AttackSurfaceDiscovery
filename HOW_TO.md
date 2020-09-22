@@ -29,6 +29,8 @@ Use NMAP-ERPSCAN service probes to find open SAP services for your organization.
 
 ### SAPRouter
 
+SAPouter [product info](https://support.sap.com/en/tools/connectivity-tools/saprouter.html) is a reverse proxy for the SAP proprietary RFC protocol. Insecurely configured SAProuter can allow an attacker to discover SAP installations behind the reverse proxy and forcing unencrypted communication. Unpatched versions are known to be vulnerable against denial of service attacks and compromise of configuration [CVE's](https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=SAProuter)
+
 |Port | Used Tools| Additional Notes|
 |:--------|:------------|:----------------|
 |3299 | NMAP, SAPRouter Utilities|
@@ -39,7 +41,7 @@ If the initial scan has not identified any open ports for the SAPRouter, you can
 >
 > Identifying SAPRouter. *Yellow circle mark shown in the image below*
 
-<img src="saprouter_identify.png" /><br>
+<img src="img/saprouter_identify.png" /><br>
 
 
 In order to further test the SAPRouter and determine whether access is allowed or denied, you will require to download the SAPRouter utilities from the SAP download manager using you S-USER. (The S-USER is given to organizations that have deployed or is currently implementing any SAP applications)
@@ -49,14 +51,16 @@ In order to determine whether the access is allowed or not, use the below comman
 > $ saprouter -L -H <target>
 
 ##### Access denied
-<img src="saprouter_denied.png" /><br>
+<img src="img/saprouter_denied.png" /><br>
 
 ##### Access allowed
-<img src="saprouter_allowed.png" /><br>
+<img src="img/saprouter_allowed.png" /><br>
 
 The above reply shows the SAProuter connection list, this information can be very critical as it may allow routing from the internet to the internal local network, this information is usually available in and can be retrieved from the SAPROUTTAB file.
 
 ### SAP Gateway
+
+SAP RFC Gateway is a gateway service which standalone, or as part of an SAP ABAP system provides service for the proprietary RFC protocol. Unpatched, or misconfigured installations can yield to full system compromise. Up to unauthenticated remote code execution vulnerabilities. By default the RFC protocol is not encrypted. Communication encryption has to be setup by the use of [SNC](https://help.sap.com/viewer/e73bba71770e4c0ca5fb2a3c17e8e229/LATEST/en-US/e656f466e99a11d1a5b00000e835363f.html).
 
 |Port | Used Tools| Additional Notes|
 |:--------|:------------|:----------------|
@@ -70,6 +74,8 @@ If the initial scan has not identified any open ports for the SAP Gateway, you c
 
 ### SAP Internet Graphic Server
 
+SAP Internet Graphic Server (IGS) provides services to generate web graphics. It can run standalone or intergrated in an SAP system. When certain patches are missing the IGS can be vulnerable to various [attacks](https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=SAP+IGS) yielding for example to arbitrary remote file manipulation or denial of service.
+
 |Port | Used Tools| Additional Notes|
 |:--------|:------------|:----------------|
 |40080 | NMAP, NMAP erpscan|
@@ -79,6 +85,8 @@ If the initial scan has not identified any open ports for the SAP Internet Graph
 > $ nmap -sV -R -p 40080 -Pn <target>
 
 ### SAP Message Server Internal Port
+
+SAP Message Server Internal Port provides cluster management services between the application servers of an SAP system cluster. When exposed to malicious actors it can be [misused](https://github.com/gelim/sap_ms) to bypass protection configurations of the SAP RFC Gateway to allow full system compromise even when the gateway is properly configured.
 
 |Port | Used Tools| Additional Notes|
 |:--------|:------------|:----------------|
