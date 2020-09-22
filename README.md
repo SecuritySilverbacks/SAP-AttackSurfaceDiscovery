@@ -16,11 +16,11 @@ The SAP Internet Research project aims to help organization and security profess
 Below is a list of how you can benefit from the different research areas of the project:
 
 - Using different port scanners to discover your organizations open SAP services that are published to the internet, below are the services included in the project:
-> - SAPRouter
-> - SAP Gateway
-> - SAP Internet Graphic Server
-> - SAP Message Server Internal Port
-> - HANA Database
+ - SAPouter [product info](https://support.sap.com/en/tools/connectivity-tools/saprouter.html) is a reverse proxy for the SAP proprietary RFC protocol. Insecurely configured SAProuter can allow an attacker to discover SAP installations behind the reverse proxy and forcing unencrypted communication. Unpatched versions are known to be vulnerable against denial of service attacks and compromise of configuration [CVE's](https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=SAProuter)
+ - SAP RFC Gateway is a gateway service which standalone, or as part of an SAP ABAP system provides service for the proprietary RFC protocol. Unpatched, or misconfigured installations can yield to full system compromise. Up to unauthenticated remote code execution vulnerabilities. By default the RFC protocol is not encrypted. Communication encryption has to be setup by the use of [SNC](https://help.sap.com/viewer/e73bba71770e4c0ca5fb2a3c17e8e229/LATEST/en-US/e656f466e99a11d1a5b00000e835363f.html)
+ - SAP Internet Graphic Server (IGS) provides services to generate web graphics. It can run standalone or intergrated in an SAP system. When certain patches are missing the IGS can be vulnerable to various [attacks](https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=SAP+IGS) yielding for example to arbitrary remote file manipulation or denial of service
+ - SAP Message Server Internal Port provides cluster management services between the application servers of an SAP system cluster. When exposed to malicious actors it can be [misused](https://github.com/gelim/sap_ms) to bypass protection configurations of the SAP RFC Gateway to allow full system compromise even when the gateway is properly configured.
+ - HANA Database
 
 - Conducting further analysis on the discovered services
 - Aligning discovery with the Core Business Application Security (CBAS) – Security Aptitude Assessment.
