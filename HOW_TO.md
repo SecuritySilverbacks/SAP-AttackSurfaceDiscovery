@@ -41,7 +41,7 @@ If the initial scan has not identified any open ports for the SAPRouter, you can
 >
 > Identifying SAPRouter. *Yellow circle mark shown in the image below*
 
-<img src="img/saprouter_identify.png" /><br>
+<img src="saprouter_identify.png" /><br>
 
 
 In order to further test the SAPRouter and determine whether access is allowed or denied, you will require to download the SAPRouter utilities from the SAP download manager using you S-USER. (The S-USER is given to organizations that have deployed or is currently implementing any SAP applications)
@@ -51,10 +51,10 @@ In order to determine whether the access is allowed or not, use the below comman
 > $ saprouter -L -H <target>
 
 ##### Access denied
-<img src="img/saprouter_denied.png" /><br>
+<img src="saprouter_denied.png" /><br>
 
 ##### Access allowed
-<img src="img/saprouter_allowed.png" /><br>
+<img src="saprouter_allowed.png" /><br>
 
 The above reply shows the SAProuter connection list, this information can be very critical as it may allow routing from the internet to the internal local network, this information is usually available in and can be retrieved from the SAPROUTTAB file.
 
