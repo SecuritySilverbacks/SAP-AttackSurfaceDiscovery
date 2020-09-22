@@ -39,7 +39,7 @@ If the initial scan has not identified any open ports for the SAPRouter, you can
 
 > $ nmap -sV -n -p 3299 -Pn $TARGET -oX output_nmap_3299.txt
 >
-> Identifying SAPRouter. *Yellow circle mark shown in the image below*
+> Identifying SAPRouter. *Red circle shown in the image below*
 
 <img src="saprouter_identify.png" /><br>
 
