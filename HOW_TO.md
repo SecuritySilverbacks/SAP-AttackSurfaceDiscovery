@@ -4,9 +4,9 @@ We have conducted our tests using __Ubuntu 20.04__ and __Windows OS__, were nece
 
 |Tool Name| Installation| Additional Notes|
 |:--------|:------------|:----------------|
-|NMAP     |*$ sudo apt install nmap* |Scan tool|
+|NMAP     |*$ sudo apt install nmap* |Scan tool. Good for smaller subnets|
 |NMAP ERPSCAN|*$ git clone git://github.com/gelim/nmap-erpscan*|Improves nmap capabilities when detecting SAP Services|
-|ZMAP     |*$ sudo apt install zmap* |Scan tool. Used for large scale analysis|
+|ZMAP     |*$ sudo apt install zmap* |Scan tool. Was used for the full 0.0.0.0/8 range|
 |Masscan  |*$ sudo apt install masscan* |Scan tool. Used for large scale analysis|
 |IFSTAT   |*$ sudo apt install ifstat*|Tool used to check bandwidth|
 |SAPROUTER Utilities|SAP Download Manager|Need an S-User to download the utilities|
