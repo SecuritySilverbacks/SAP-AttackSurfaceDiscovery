@@ -42,5 +42,5 @@ When applied to a single organization, the results from the SAP Internet Researc
 Another potential area of benefit will be under the DETECT and INTEGRATION quadrant, this will allow organizations to automate their monitoring capabilities when it comes to publishing SAP application to the internet. If publishing these applications is not a requirement and have been done due to misconfiguration then the organization would be able to properly detect it.
 
 
-[![button](cio.png)](SAP_Internet_Research_HOW_TO.md)
+[![button](./.assets/cio.png)](SAP_Internet_Research_HOW_TO.md)
 
