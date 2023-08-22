@@ -19,8 +19,9 @@ When applied to a single organization, the results from the SAP Internet Researc
 
 Another potential area of benefit will be under the DETECT and INTEGRATION quadrant, this will allow organizations to automate their monitoring capabilities when it comes to publishing SAP application to the internet. If publishing these applications is not a requirement and have been done due to misconfiguration then the organization would be able to properly detect it.
 
-More information about the OWASP CBAS project can be found on the [Project Page](https://owasp.org/www-project-core-business-application-security/)
+More information can be found on the [OWASP CBAS project Page](https://owasp.org/www-project-core-business-application-security/)
 
+## SAP Internet Research Wiki
 
 More information, benefits and details to each service can be found in the [Wiki](https://github.com/NO-MONKEY/SAP-Internet-Research/wiki)
 
