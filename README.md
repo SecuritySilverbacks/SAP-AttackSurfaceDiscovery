@@ -1,4 +1,4 @@
-# SAP Internet Research
+# SAP Attack Surface Discovery
 
 > [!WARNING]
 > Make sure you have the appropriate permissions to actively scan and test applications. Without doing so, you might face legal implications
