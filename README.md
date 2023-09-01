@@ -24,7 +24,7 @@ More information can be found on the [OWASP CBAS project Page](https://owasp.org
 
 ## SAP Internet Research Wiki
 
-More information, benefits and details to each service can be found in the [Wiki](https://github.com/NO-MONKEY/SAP-Internet-Research/wiki)
+More information, benefits and details to each service can be found in the [Wiki](https://github.com/NO-MONKEY/SAP-AttackSurfaceDiscovery/wiki)
 
-[![button](./.assets/cio.png)](https://github.com/NO-MONKEY/SAP-Internet-Research/wiki)
+[![button](./.assets/cio.png)](https://github.com/NO-MONKEY/SAP-AttackSurfaceDiscovery/wiki)
 
