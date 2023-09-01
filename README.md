@@ -3,7 +3,7 @@
 > [!WARNING]
 > Make sure you have the appropriate permissions to actively scan and test applications. Without doing so, you might face legal implications
 
-The project aims to help organization and security professionals to identify and discover open SAP services facing the internet. This allows individuals to further test these services for any potential threat that might affect SAP applications in their organizations.  
+The project aims to help organizations and security professionals to identify and discover open SAP services through the use of different network scanning techniques. This allows individuals to further test these services for any potential threat that might affect SAP applications in their organizations.  
 
 ## OWASP CBAS project
 
