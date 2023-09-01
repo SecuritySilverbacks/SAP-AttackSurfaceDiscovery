@@ -1,7 +1,7 @@
 # SAP Internet Research
 
 > [!WARNING]
-> Make sure you have the appropriate permissions to actively scan and test applications. Without doing so, you might face legal implications__*
+> Make sure you have the appropriate permissions to actively scan and test applications. Without doing so, you might face legal implications
 
 The SAP Internet Research project aims to help organization and security professionals to identify and discover open SAP services facing the internet. This allows individuals to further test these services for any potential threat that might affect SAP applications in their organizations.  
 
