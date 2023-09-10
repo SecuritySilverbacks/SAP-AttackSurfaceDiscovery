@@ -1,0 +1,22 @@
+id: sap-cloud-connector-detection
+
+info:
+  name: SAP Cloud Connector detection
+  author: randomstr1ng
+  severity: info
+  description: This template will detect the SAP Cloud Connector webinterface.
+  reference: https://help.sap.com/docs/connectivity/sap-btp-connectivity-cf/cloud-connector
+  tags: sap,misconfig
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/"
+
+    matchers:
+      - type: regex
+        part: body
+        regex:
+          - "sccLogin"
+          - "Cloud Connector Login"
+        condition: and

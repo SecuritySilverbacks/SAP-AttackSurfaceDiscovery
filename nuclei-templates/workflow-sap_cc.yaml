@@ -1,0 +1,4 @@
+workflows:
+  - template: sap_cloud_connector/sap-cloud-connector-detection.yaml
+  subtemplates:
+    - template: sap_cloud_connector/sap-cc-default-credentials.yaml
