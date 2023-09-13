@@ -12,11 +12,17 @@ http:
   - method: GET
     path:
       - "{{BaseURL}}/"
+      - "{{BaseURL}}:8443/"
 
+    matchers-condition: and
     matchers:
       - type: regex
         part: body
         regex:
           - "sccLogin"
-          - "Cloud Connector Login"
+          - "Login"
         condition: and
+      - type: regex
+        part: header
+        regex:
+          - "Server: Cloud Connector"
