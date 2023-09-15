@@ -22,7 +22,7 @@ Another potential area of benefit will be under the DETECT and INTEGRATION quadr
 
 More information can be found on the [OWASP CBAS project Page](https://owasp.org/www-project-core-business-application-security/)
 
-## SAP Internet Research Wiki
+## SAP Attack Surface Discovery Wiki
 
 More information, benefits and details to each service can be found in the [Wiki](https://github.com/NO-MONKEY/SAP-AttackSurfaceDiscovery/wiki)
 
