@@ -26,3 +26,5 @@ http:
         part: header
         regex:
           - "Server: Cloud Connector"
+          - "Server: Apache-Coyote"
+        condition: or
