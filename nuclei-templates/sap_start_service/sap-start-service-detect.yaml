@@ -1,0 +1,13 @@
+id: sap-start-service-detect
+
+info:
+  name: SAP Sat Service HTTP Service detection
+  author: randomstr1ng
+  severity: info
+  description: Detection of Webservice of the SAP Start Service (incl. SAP MC)
+  tags: sap,webserver,tech
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
