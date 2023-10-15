@@ -1,13 +1,29 @@
 id: sap-start-service-detect
 
 info:
-  name: SAP Sat Service HTTP Service detection
+  name: SAP Sat Service HTTP Service & SOAP API detection
   author: randomstr1ng
   severity: info
-  description: Detection of Webservice of the SAP Start Service (incl. SAP MC)
+  description: Detection of Webservice of the SAP Start Service (incl. SAP MC & SOAP API)
   tags: sap,webserver,tech
 
 http:
   - method: GET
     path:
-      - "{{BaseURL}}"
+      - '{{BaseURL}}'
+      - '{{BaseURL}}/?wsdl'
+    matchers-condition: and
+    matchers:
+    - type: regex
+      part: header
+      regex:
+        - 'gSOAP/'
+    - type: regex
+      part: body
+      condition: or
+      regex:
+        - 'SAP Management Console'
+        - 'applet.ManagementConsoleInstallerApplet'
+        - 'urn:SAPControl'
+        - '<service name="SAPControl">'
+
