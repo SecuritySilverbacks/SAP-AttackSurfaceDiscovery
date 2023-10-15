@@ -16,8 +16,10 @@ http:
     matchers:
     - type: regex
       part: header
+      condition: or
       regex:
-        - 'gSOAP/'
+        - 'Server: gSOAP/'
+        - 'Location: /sapmc/sapmc.html'
     - type: regex
       part: body
       condition: or
@@ -26,4 +28,5 @@ http:
         - 'applet.ManagementConsoleInstallerApplet'
         - 'urn:SAPControl'
         - '<service name="SAPControl">'
+        - 'SAPHostControl'
 
