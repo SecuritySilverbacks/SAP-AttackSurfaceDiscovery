@@ -1,0 +1,40 @@
+id: sap-message-server-http-detection
+
+info:
+  name: SAP Message Server HTTP service detection
+  author: randomstr1ng
+  severity: info
+  description: This template will detect the HTTP service of the SAP Message Server.
+  reference: https://help.sap.com/docs/SAP_NETWEAVER_700/109ccbef6c5310148407a83dc873edbb/47c5935087b62d66e10000000a42189c.html
+  tags: sap,misconfig
+
+http:
+    - raw:
+        - |
+          GET / HTTP/1.1
+          Host: {{Hostname}}
+
+      matchers-condition: and
+      matchers:
+        - type: word
+          part: header
+          words:
+            - "Server: SAP Message Server"
+
+        - type: status
+          status:
+            - 307
+
+      extractors:
+        - type: regex
+          name: SID
+          part: header
+          group: 1
+          regex:
+            - 'release.*\((.*)\)'
+        - type: regex
+          name: Release
+          part: header
+          group: 1
+          regex:
+            - 'release.([0-9]{3})'
