@@ -11,8 +11,8 @@ info:
 http:
   - method: GET
     path:
-      - "{{BaseURL}}/"
-      - "{{BaseURL}}:8443/"
+      - "https://{{Hostname}}/"
+      - "https://{{Hostname}}:8443/"
 
     matchers-condition: and
     matchers:
