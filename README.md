@@ -28,3 +28,8 @@ More information, benefits and details to each service can be found in the [Wiki
 
 [![button](./.assets/cio.png)](https://github.com/SecuritySilverbacks/SAP-AttackSurfaceDiscovery/wiki)
 
+## Communication and Contribution
+
+Anyone interested in supporting, contributing or giving feedback join us in our [discord channel](https://discord.gg/8c9jwUQ)
+
+We have also included a section about contribution in out Wiki, which can be found [here](https://github.com/SecuritySilverbacks/SAP-AttackSurfaceDiscovery/wiki#how-to-contribute)
