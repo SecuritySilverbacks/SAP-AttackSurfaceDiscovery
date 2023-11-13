@@ -14,7 +14,8 @@ RUN setcap cap_net_admin=ie $(which nmap)
 RUN git clone --depth=1 https://github.com/gelim/nmap-erpscan.git /tools/nmap-erpscan
 
 # Setup nuclei & install default templates
-RUN wget -q https://github.com/projectdiscovery/nuclei/releases/download/v3.0.1/nuclei_3.0.1_linux_amd64.zip -O /tmp/nuclei.zip && \
+RUN VERSION=$(curl -s https://api.pdtm.sh/api/v1/tools/nuclei | jq '.tools[0]["version"]' | tr -d '"') && \
+    wget -q "https://github.com/projectdiscovery/nuclei/releases/download/v$VERSION/nuclei_$(echo $VERSION)_linux_amd64.zip" -O /tmp/nuclei.zip && \
     unzip /tmp/nuclei.zip -d /tools/.bin/ && rm /tmp/nuclei.zip && nuclei -ut
 
 # Setup nuclei-sap-templates
