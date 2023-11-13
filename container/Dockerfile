@@ -7,7 +7,7 @@ RUN apk add --no-cache nmap nmap-scripts wget bash py3-pip git libcap
 RUN mkdir -p /tools/.bin && mkdir -p /tools/nuclei-sap-templates
 ENV PATH="${PATH}:/tools/.bin"
 
-# Setup Nmap
+# Setup Nmap permissions
 RUN setcap cap_net_admin=ie $(which nmap)
 
 # Setup ERPScan Nmap
@@ -22,6 +22,6 @@ ADD ./nuclei-sap-templates/ /tools/nuclei-sap-templates
 
 # Final Setup
 RUN alias ll='ls -la'
-ENV PS1='\u@sap-attack-surface:\w\$ '
+ENV PS1='sap-attack-surface:\w\$ '
 WORKDIR /work
 ENTRYPOINT ["/bin/bash"]
