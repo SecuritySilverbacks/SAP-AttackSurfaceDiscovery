@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 # Install Packages
-RUN apk add --no-cache nmap nmap-scripts wget bash py3-pip git libcap jq
+RUN apk add --no-cache nmap nmap-scripts wget bash py3-pip git libcap jq curl
 
 # Setup Folder
 RUN mkdir -p /tools/.bin && mkdir -p /tools/nuclei-sap-templates
