@@ -23,7 +23,7 @@ ADD ./nuclei-sap-templates/ /tools/nuclei-sap-templates
 ADD ./tools/ /tools/nuclei-sap-templates
 
 # Final Setup
-#RUN alias ll='ls -la'
+RUN alias ll='ls -la'
 ENV PS1='\e[0;32m\u@sap-attack-surface\e[m:\e[1;33m\w\e[m\n\$ '
 WORKDIR /work
 ENTRYPOINT ["/bin/bash"]
