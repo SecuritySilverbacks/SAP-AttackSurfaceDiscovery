@@ -43,5 +43,5 @@ jobs:
           context: .
           push: true
           file: ./container/Dockerfile
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: sap-attack-surface-discovery:latest
           labels: ${{ steps.meta.outputs.labels }}
