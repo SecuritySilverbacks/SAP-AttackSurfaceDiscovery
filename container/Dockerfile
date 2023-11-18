@@ -21,7 +21,6 @@ RUN VERSION=$(curl -s https://api.pdtm.sh/api/v1/tools/nuclei | jq '.tools[0]["v
 # Setup nuclei-sap-templates
 ADD ./nuclei-sap-templates/ /tools/nuclei-sap-templates
 ADD ./tools/ /tools
-
 # Install tools requirements
 RUN pip3 install -r /tools/requirements.txt && rm /tools/requirements.txt && chmod +x /tools/*.py
 
