@@ -37,12 +37,15 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       
+      - id: read-docker-image-identifiers
+        name: Read Docker Image Identifiers
+        run: echo ::set-env name=IMAGE_REPOSITORY::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           file: ./container/Dockerfile
-          tags: ${{lowercase(github.repository)}}:latest
-          #tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{env.IMAGE_REPOSITORY}}:latest
           labels: ${{ steps.meta.outputs.labels }}
