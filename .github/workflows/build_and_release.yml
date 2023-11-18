@@ -47,5 +47,5 @@ jobs:
           context: .
           push: true
           file: ./container/Dockerfile
-          tags: ${{env.IMAGE_REPOSITORY}}:latest
+          tags: ghcr.io/securitysilverbacks/sap-attacksurfacediscovery:latest
           labels: ${{ steps.meta.outputs.labels }}
