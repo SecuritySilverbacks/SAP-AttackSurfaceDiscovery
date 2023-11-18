@@ -1,4 +1,5 @@
 # SAP Attack Surface Discovery
+[![build and release of Container image](https://github.com/SecuritySilverbacks/SAP-AttackSurfaceDiscovery/actions/workflows/build_and_release.yml/badge.svg)](https://github.com/SecuritySilverbacks/SAP-AttackSurfaceDiscovery/actions/workflows/build_and_release.yml)
 
 > [!WARNING]
 > Make sure you have the appropriate permissions to actively scan and test applications. Without doing so, you might face legal implications
