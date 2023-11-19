@@ -40,23 +40,35 @@ def main():
         print("\n[*] Targets:")
     data = json.loads(read_nmap_result(options.IN_FILE))
     with open(options.OUT_FILE, "w") as file:
-        for host in data["nmaprun"]["host"]:
-            if host["hostnames"] != None:
-                for entry in host["hostnames"]["hostname"]:
-                    try:
-                        if entry["@type"] == "user":
-                            target = entry["@name"]
-                    except:
-                        if entry == "@name" or entry == "@type":
-                            target = host["address"]["@addr"]
-                        break
+        if int(data["nmaprun"]["runstats"]["hosts"]["@total"]) > 1:
+            for host in data["nmaprun"]["host"]:
+                if host["hostnames"] != None:
+                    for entry in host["hostnames"]["hostname"]:
+                        try:
+                            if entry["@type"] == "user":
+                                target = entry["@name"]
+                        except:
+                            if entry == "@name" or entry == "@type":
+                                target = host["address"]["@addr"]
+                            break
+                else:
+                    target = host["address"]["@addr"]
+                for port in host["ports"]["port"]:
+                    target_port = port["@portid"]
+                    if options.VERBOSE:
+                        print(f'{target}:{target_port}')
+                    file.writelines(f'{target}:{target_port}\n')
+        else:
+            if data["nmaprun"]["host"]["hostnames"]["hostname"].get("@type") == "user":
+                 target = data["nmaprun"]["host"]["hostnames"]["hostname"].get("@name")
             else:
-                target = host["address"]["@addr"]
-            for port in host["ports"]["port"]:
+                 target = data["nmaprun"]["host"]["address"].get("@addr")
+            for port in data["nmaprun"]["host"]["ports"].get("port"):
                 target_port = port["@portid"]
                 if options.VERBOSE:
                     print(f'{target}:{target_port}')
                 file.writelines(f'{target}:{target_port}\n')
+
     print(f"\n[*] Targets written to {os.path.abspath(options.OUT_FILE)}")
     print("[*] Done")
 
