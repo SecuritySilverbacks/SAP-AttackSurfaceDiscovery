@@ -4,6 +4,6 @@ info:
   author: randomstr1ng
 
 workflows:
-  - template: ./sap_cloud_connector/sap-cloud-connector-detection.yaml
+  - template: /tools/nuclei-sap-templates/sap_cloud_connector/sap-cloud-connector-detection.yaml
     subtemplates:
-      - template: ./sap_cloud_connector/sap-cc-default-credentials.yaml
+      - template: /tools/nuclei-sap-templates/sap_cloud_connector/sap-cc-default-credentials.yaml

@@ -1,4 +1,4 @@
 workflows:
   - template: saprouter/sap-router.yaml
-  subtemplates:
-    - template: saprouter/sap-router-info-leak.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/saprouter/sap-router-info-leak.yaml
