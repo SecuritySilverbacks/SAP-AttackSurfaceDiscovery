@@ -25,7 +25,6 @@ ADD ./tools/ /tools
 RUN pip3 install -r /tools/requirements.txt && rm /tools/requirements.txt && chmod +x /tools/*.py
 
 # Final Setup
-RUN echo 'alias la="ls -la"' >> ~/.bashrc
 ENV PS1='\e[0;32m\u@sap-attack-surface\e[m:\e[1;33m\w\e[m\n\$ '
 WORKDIR /work
 ENTRYPOINT ["/bin/bash"]
