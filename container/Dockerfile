@@ -24,6 +24,11 @@ ADD ./tools/ /tools
 # Install tools requirements
 RUN pip3 install -r /tools/requirements.txt && rm /tools/requirements.txt && chmod +x /tools/*.py
 
+# Install & setup SAPstart service enumeration tool
+RUN git clone --depth=1 https://github.com/randomstr1ng/sapstartsrv-enumeration/ /tools/sapstartsrv-enumeration && \
+    chmod +x /tools/sapstartsrv-enumeration/*.py && \
+    pip3 install -r /tools/sapstartsrv-enumeration/requirements.txt
+
 # Final Setup
 ENV PS1='\e[0;32m\u@sap-attack-surface\e[m:\e[1;33m\w\e[m\n\$ '
 WORKDIR /work
