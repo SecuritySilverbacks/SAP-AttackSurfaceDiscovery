@@ -1,4 +1,9 @@
+id: sap-router-workflow
+info:
+  name: SAPRouter Workflow
+  author: randomstr1ng
+
 workflows:
-  - template: saprouter/sap-router.yaml
+  - template: /tools/nuclei-sap-templates/saprouter/sap-router.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/saprouter/sap-router-info-leak.yaml
