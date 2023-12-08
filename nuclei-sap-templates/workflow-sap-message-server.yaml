@@ -1,0 +1,14 @@
+id: sap-message-server-workflow
+info:
+  name: SAP Message Server Workflow
+  author: randomstr1ng
+
+workflows:
+  - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-http-detection.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-instance-information-leak.yaml
+  - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-tcp-service-detection.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-check-admin-port.yaml
+      - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-check-monitor-status.yaml
+      - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-internal-service-aclinfo-dump.yaml
