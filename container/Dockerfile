@@ -11,7 +11,7 @@ ENV PATH="${PATH}:/tools/.bin"
 RUN setcap cap_net_admin=ie $(which nmap)
 
 # Setup ERPScan Nmap
-RUN git clone --depth=1 https://github.com/gelim/nmap-erpscan.git /tools/nmap-erpscan
+RUN git clone --depth=1 https://github.com/randomstr1ng/nmap-erpscan /tools/nmap-erpscan
 
 # Setup nuclei & install default templates
 RUN VERSION=$(curl -s https://api.pdtm.sh/api/v1/tools/nuclei | jq '.tools[0]["version"]' | tr -d '"') && \
