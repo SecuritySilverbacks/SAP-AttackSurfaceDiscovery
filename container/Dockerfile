@@ -30,6 +30,7 @@ RUN git clone --depth=1 https://github.com/randomstr1ng/sapstartsrv-enumeration/
     pip3 install -r /tools/sapstartsrv-enumeration/requirements.txt --break-system-packages
 
 # Final Setup
+RUN echo "alias ll='ls -alF'" > /root/.bashrc
 ENV PS1='\e[0;32m\u@sap-attack-surface\e[m:\e[1;33m\w\e[m\n\$ '
 WORKDIR /work
 ENTRYPOINT ["/bin/bash"]
