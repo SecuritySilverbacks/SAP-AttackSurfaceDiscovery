@@ -1,0 +1,9 @@
+id: sap-web-dispatcher-workflow
+info:
+  name: SAP Web Dispatcher Workflow
+  author: randomstr1ng
+
+workflows:
+  - template: /tools/nuclei-sap-templates/sap_web_dispatcher/sap-web-dispatcher-detection.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_web_dispatcher/sap-web-dispatcher-admin-portal.yaml
