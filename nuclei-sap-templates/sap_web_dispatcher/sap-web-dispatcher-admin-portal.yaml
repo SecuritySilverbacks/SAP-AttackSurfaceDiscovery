@@ -7,7 +7,6 @@ info:
   description: Detection of SAP Web Dispatcher Admin Portal
   metadata:
     max-request: 1
-    shodan-query: http.favicon.hash:-266008933
   tags: sap,webserver,proxy,tech
 
 http:
@@ -22,10 +21,8 @@ http:
     matchers:
       - type: word
         part: header
-        condition: or
         words:
           - "Basic realm=\"WEB ADMIN\""
-          - "SAP NetWeaver Application Server"
 
       - type: status
         condition: or
@@ -39,3 +36,4 @@ http:
         words:
           - "SAP Web Dispatcher"
           - "<title>Administration</title>"
+          - "Application Server Error"
