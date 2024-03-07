@@ -1,0 +1,9 @@
+id: sap-internet-communication-manager-workflow
+info:
+  name: SAP ICM Workflow
+  author: randomstr1ng
+
+workflows:
+  - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-detect.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-webgui.yaml
