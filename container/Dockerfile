@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 # Install Packages
-RUN apk add --no-cache nmap nmap-scripts wget bash py3-pip git libcap jq curl
+RUN apk add --no-cache nmap nmap-scripts wget bash py3-pip git libcap jq curl ffuf
 
 # Setup Folder
 RUN mkdir -p /tools/.bin && mkdir -p /tools/nuclei-sap-templates
@@ -27,7 +27,10 @@ RUN pip3 install -r /tools/requirements.txt --break-system-packages && rm /tools
 # Install & setup SAPstart service enumeration tool
 RUN git clone --depth=1 https://github.com/randomstr1ng/sapstartsrv-enumeration/ /tools/sapstartsrv-enumeration && \
     chmod +x /tools/sapstartsrv-enumeration/*.py && \
-    pip3 install -r /tools/sapstartsrv-enumeration/requirements.txt --break-system-packages
+    pip3 install -r /tools/sapstartsrv-enumeration/requirements.txt --break-system-packages \
+
+# Download SAP ICM wordlist
+RUN curl https://raw.githubusercontent.com/rapid7/metasploit-framework/564c3f8e024ad38cdf43fd8cedfb375e731ec787/data/wordlists/sap_icm_paths.txt -O /tools/sap_icm_paths.txt
 
 # Final Setup
 RUN echo "alias ll='ls -alF'" > /root/.bashrc
