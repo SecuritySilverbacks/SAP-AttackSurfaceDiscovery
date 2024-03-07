@@ -30,7 +30,7 @@ RUN git clone --depth=1 https://github.com/randomstr1ng/sapstartsrv-enumeration/
     pip3 install -r /tools/sapstartsrv-enumeration/requirements.txt --break-system-packages \
 
 # Download SAP ICM wordlist
-RUN curl https://raw.githubusercontent.com/rapid7/metasploit-framework/564c3f8e024ad38cdf43fd8cedfb375e731ec787/data/wordlists/sap_icm_paths.txt -O /tools/sap_icm_paths.txt
+RUN curl https://raw.githubusercontent.com/rapid7/metasploit-framework/564c3f8e024ad38cdf43fd8cedfb375e731ec787/data/wordlists/sap_icm_paths.txt -o /tools/sap_icm_paths.txt
 
 # Final Setup
 RUN echo "alias ll='ls -alF'" > /root/.bashrc
