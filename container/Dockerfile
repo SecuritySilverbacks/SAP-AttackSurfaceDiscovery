@@ -31,6 +31,9 @@ ADD ./tools/ /tools
 # Install tools requirements
 RUN pip3 install -r /tools/requirements.txt && rm /tools/requirements.txt && chmod +x /tools/*.py
 
+# Download SAP ICM wordlist
+RUN wget https://raw.githubusercontent.com/rapid7/metasploit-framework/564c3f8e024ad38cdf43fd8cedfb375e731ec787/data/wordlists/sap_icm_paths.txt -O /tools/sap_icm_paths.txt
+
 # Final Setup
 RUN echo "alias ll='ls -alF'" > /root/.bashrc
 RUN echo "export PS1='\e[0;32m\u@sap-attack-surface\e[m:\e[1;33m\w\e[m\n\$ '" >> /root/.bashrc
