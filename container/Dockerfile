@@ -26,6 +26,6 @@ RUN VERSION=$(curl -s https://api.pdtm.sh/api/v1/tools/nuclei | jq '.tools[0]["v
 
 # Final Setup
 RUN echo "alias ll='ls -alF'" > /root/.bashrc
-ENV PS1='\e[0;32m\u@sap-attack-surface\e[m:\e[1;33m\w\e[m\n\$ '
+RUN echo "export PS1='\e[0;32m\u@sap-attack-surface\e[m:\e[1;33m\w\e[m\n\$ '" >> /root/.bashrc
 WORKDIR /work
 ENTRYPOINT ["/bin/bash"]
