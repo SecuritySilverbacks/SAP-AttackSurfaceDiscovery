@@ -1,4 +1,4 @@
-id: sap-nw-webgui
+id: sap-netweaver-webgui
 
 info:
   name: SAP NetWeaver WebGUI Detection
@@ -6,12 +6,12 @@ info:
   severity: info
   description: Detection of SAP NetWeaver ABAP Webserver WebGUI
   tags: sap,webserver,tech
-  metadata:
-    max-request: 1
 
 http:
   - method: GET
     path:
+    # Request needs to be made twice due to default SPNego authentication behaviour
+      - "{{BaseURL}}/sap/bc/gui/sap/its/webgui"
       - "{{BaseURL}}/sap/bc/gui/sap/its/webgui"
 
     host-redirects: true
@@ -22,4 +22,7 @@ http:
         words:
           - "sap-system-login"
           - "<title>Logon</title>"
-        condition: or
+          - "webgui"
+          - "sap-system-login-oninputprocessing"
+          - "sap-system-login-basic_auth"
+        condition: and
