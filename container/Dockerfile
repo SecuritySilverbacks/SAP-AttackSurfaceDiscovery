@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     python2 \
     python2-dev \
+    ffuf \
  && rm -rf /var/lib/apt/lists/*
 
 # Setup Folder
