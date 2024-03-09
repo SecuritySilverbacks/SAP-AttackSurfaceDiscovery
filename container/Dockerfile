@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     jq \
     bash \
     unzip \
+    python2 \
  && rm -rf /var/lib/apt/lists/*
 
 # Setup Folder
@@ -30,6 +31,9 @@ ADD ./tools/ /tools
 
 # Install tools requirements
 RUN pip3 install -r /tools/requirements.txt && rm /tools/requirements.txt && chmod +x /tools/*.py
+
+# Install python2 pip
+RUN wget -q https://bootstrap.pypa.io/pip/2.7/get-pip.py -O /tmp/get-pip.py && python2 /tmp/get-pip.py && rm -rf /tmp/get-pip.py
 
 # Install & setup SAPstart service enumeration tool
 RUN git clone --depth=1 https://github.com/randomstr1ng/sapstartsrv-enumeration/ /tools/sapstartsrv-enumeration && \
