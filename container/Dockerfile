@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     bash \
     unzip \
     python2 \
+    python2-dev
  && rm -rf /var/lib/apt/lists/*
 
 # Setup Folder
@@ -43,8 +44,12 @@ RUN git clone --depth=1 https://github.com/randomstr1ng/sapstartsrv-enumeration/
 # Download SAP ICM wordlist
 RUN wget https://raw.githubusercontent.com/rapid7/metasploit-framework/564c3f8e024ad38cdf43fd8cedfb375e731ec787/data/wordlists/sap_icm_paths.txt -O /tools/sap_icm_paths.txt
 
+# Install additional tools
+RUN python3 -m pip install shodan
+RUN python2 -m pip install pysap[examples] && git clone --depth=1 https://github.com/OWASP/pysap.git /tmp/pysap && mv /tmp/pysap/examples /tools/pysap-tools && rm -rf /tmp/pysap
+
 # Final Setup
-RUN echo "alias ll='ls -alF'" > /root/.bashrc
+RUN echo "alias ll='ls -al'" > /root/.bashrc
 RUN echo "export PS1='\e[0;32m\u@sap-attack-surface\e[m:\e[1;33m\w\e[m\n\$ '" >> /root/.bashrc
 WORKDIR /work
 ENTRYPOINT ["/bin/bash"]
