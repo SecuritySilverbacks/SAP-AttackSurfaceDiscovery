@@ -1,0 +1,9 @@
+id: sap-dispatcher-workflow
+info:
+  name: SAP Dispatcher Workflow
+  author: randomstr1ng
+
+workflows:
+  - template: /tools/nuclei-sap-templates/sap_dispatcher/sap-dispatcher-detect.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_dispatcher/sap-dispatcher-login-info.yaml
