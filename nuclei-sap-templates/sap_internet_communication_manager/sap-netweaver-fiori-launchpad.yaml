@@ -1,4 +1,4 @@
-id: sap-nw-fiori-launchpad
+id: sap-netweaver-fiori-launchpad
 
 info:
   name: SAP NetWeaver Fiori Launchpad Detection
@@ -6,20 +6,32 @@ info:
   severity: info
   description: Detection of SAP NetWeaver Fiori Launchpad on AS ABAP/ABAP Platform
   tags: sap,webserver,tech
-  metadata:
-    max-request: 1
 
 http:
   - method: GET
     path:
       - "{{BaseURL}}/sap/bc/ui2/flp"
+      - "{{BaseURL}}/sap/bc/ui2/flp"
 
     host-redirects: true
     max-redirects: 2
+    matchers-condition: or
     matchers:
+# Matchers used by SAP NetWeaver 752 SP04
       - type: word
         part: body
         words:
-          - ".sapUiBody"
+          - '.sapUiSraLoginPage'
+          - "fioriLogin"
           - "<title>Logon</title>"
+          - ".sapUiSraLoginForm"
+        condition: and
+# Matchers used by S/4HANA 1909 SP7
+      - type: word
+        part: body
+        words:
+          - "sapUiLightestBG"
+          - "sapUiSraLoginHeight"
+          - "data-sap-login"
+          - "LOGIN_SHADOW_FORM"
         condition: and
