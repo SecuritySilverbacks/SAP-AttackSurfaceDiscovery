@@ -32,6 +32,16 @@ def read_nmap_result(IN_FILE):
 	with open(IN_FILE, "r") as file:
 		return json.dumps(xmltodict.parse(file.read()))
 
+def eval_entry(item):
+    if item.get("hostnames") == None:
+        return item["address"].get("@addr")
+    else:
+        for entry in item["hostnames"]["hostname"]:
+            if entry["@type"] == "user":
+                return entry["@name"]
+            else:
+                pass
+
 def main():
     print(banner)
     options = arguments()
@@ -40,34 +50,22 @@ def main():
         print("\n[*] Targets:")
     data = json.loads(read_nmap_result(options.IN_FILE))
     with open(options.OUT_FILE, "w") as file:
-        if int(data["nmaprun"]["runstats"]["hosts"]["@total"]) > 1:
-            for host in data["nmaprun"]["host"]:
-                if host["hostnames"] != None:
-                    for entry in host["hostnames"]["hostname"]:
-                        try:
-                            if entry["@type"] == "user":
-                                target = entry["@name"]
-                        except:
-                            if entry == "@name" or entry == "@type":
-                                target = host["address"]["@addr"]
-                            break
-                else:
-                    target = host["address"]["@addr"]
-                for port in host["ports"]["port"]:
-                    target_port = port["@portid"]
-                    if options.VERBOSE:
-                        print(f'{target}:{target_port}')
-                    file.writelines(f'{target}:{target_port}\n')
-        else:
-            if data["nmaprun"]["host"]["hostnames"]["hostname"].get("@type") == "user":
-                 target = data["nmaprun"]["host"]["hostnames"]["hostname"].get("@name")
-            else:
-                 target = data["nmaprun"]["host"]["address"].get("@addr")
-            for port in data["nmaprun"]["host"]["ports"].get("port"):
-                target_port = port["@portid"]
+        # only if single host
+        if data["nmaprun"]["runstats"]["hosts"].get("@total") == "1":
+            target = eval_entry(data["nmaprun"]["host"])
+            for port in data["nmaprun"]["host"]["ports"]["port"]:
                 if options.VERBOSE:
-                    print(f'{target}:{target_port}')
-                file.writelines(f'{target}:{target_port}\n')
+                    print(f'{target}:{port.get("@portid")}')
+                file.writelines(f'{target}:{port.get("@portid")}\n')
+
+        # only if multiple hosts
+        else:
+            for item in data["nmaprun"]["host"]:
+                target = eval_entry(item)
+                for port in item["ports"]["port"]:
+                    if options.VERBOSE:
+                        print(f'{target}:{port.get("@portid")}')
+                    file.writelines(f'{target}:{port.get("@portid")}\n')
 
     print(f"\n[*] Targets written to {os.path.abspath(options.OUT_FILE)}")
     print("[*] Done")
