@@ -47,7 +47,7 @@ def main():
     options = arguments()
     print("[*] Generating Target list...")
     if options.VERBOSE:
-        print("\n[*] Targets:")
+        print("[*] Targets:")
     data = json.loads(read_nmap_result(options.IN_FILE))
     with open(options.OUT_FILE, "w") as file:
         # only if single host
@@ -67,7 +67,7 @@ def main():
                         print(f'{target}:{port.get("@portid")}')
                     file.writelines(f'{target}:{port.get("@portid")}\n')
 
-    print(f"\n[*] Targets written to {os.path.abspath(options.OUT_FILE)}")
+    print(f"[*] Targets written to {os.path.abspath(options.OUT_FILE)}")
     print("[*] Done")
 
 main()
