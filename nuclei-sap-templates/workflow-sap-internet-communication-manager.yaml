@@ -8,3 +8,4 @@ workflows:
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-webgui.yaml
       - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-fiori-launchpad.yaml
+      - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-info-leak.yaml
