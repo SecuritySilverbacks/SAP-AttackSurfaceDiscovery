@@ -43,6 +43,11 @@ RUN git clone --depth=1 https://github.com/randomstr1ng/sapstartsrv-enumeration/
     chmod +x /tools/sapstartsrv-enumeration/*.py && \
     pip3 install -r /tools/sapstartsrv-enumeration/requirements.txt && mv /tools/sapstartsrv-enumeration/*.py /tools/ && rm -rf /tools/sapstartsrv-enumeration
 
+# Install SAP Web Service Bruteforce
+RUN mkdir -p ~/.msf4/modules/auxiliary/scanner/sap/ && wget -q https://raw.githubusercontent.com/randomstr1ng/sap-webgui-bruteforce/main/metasploit-module/sap_web_bruteforce.py -O ~/.msf4/modules/auxiliary/scanner/sap/ && chmod +x ~/.msf4/modules/auxiliary/scanner/sap/sap_web_bruteforce.py \
+    && python3 -m pip install https://raw.githubusercontent.com/randomstr1ng/sap-webgui-bruteforce/main/requirements.txt \
+    && wget -q https://raw.githubusercontent.com/randomstr1ng/sap-webgui-bruteforce/main/sap_webgui_brute.py -O /tools/ && chmod +x /tools/sap_webgui_brute.py
+
 # Download SAP ICM wordlist
 RUN wget -q https://raw.githubusercontent.com/rapid7/metasploit-framework/564c3f8e024ad38cdf43fd8cedfb375e731ec787/data/wordlists/sap_icm_paths.txt -O /tools/wordlists/sap_icm_paths.txt && rm -rf /tmp/*
 
