@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     python2-dev \
     ffuf \
     vim \
+    masscan \
     && curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > /tmp/msfinstall && bash /tmp/msfinstall && rm -rf /tmp/msfinstall &&\
     rm -rf /var/lib/apt/lists/*
 
