@@ -49,7 +49,7 @@ RUN mkdir -p /root/.msf4/modules/auxiliary/scanner/sap/ && wget -q https://raw.g
     && wget -q https://raw.githubusercontent.com/randomstr1ng/sap-webgui-bruteforce/main/sap_webgui_brute.py -O /tools/sap_webgui_brute.py && chmod +x /tools/sap_webgui_brute.py
 
 # Download SAP ICM wordlist
-RUN wget -q https://raw.githubusercontent.com/rapid7/metasploit-framework/564c3f8e024ad38cdf43fd8cedfb375e731ec787/data/wordlists/sap_icm_paths.txt -O /tools/wordlists/sap_icm_paths.txt && rm -rf /tmp/*
+RUN wget -q https://raw.githubusercontent.com/rapid7/metasploit-framework/master/data/wordlists/sap_icm_paths.txt -O /tools/wordlists/sap_icm_paths.txt && rm -rf /tmp/*
 
 # Install additional tools
 RUN python3 -m pip install shodan
