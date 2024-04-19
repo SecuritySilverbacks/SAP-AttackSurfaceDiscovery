@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
     ffuf \
     vim \
     masscan \
-    && curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > /tmp/msfinstall && bash /tmp/msfinstall && rm -rf /tmp/msfinstall &&\
-    rm -rf /var/lib/apt/lists/*
+    && curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > /tmp/msfinstall && \
+    bash /tmp/msfinstall && rm -rf /tmp/msfinstall && apt-key export 2007B954 | gpg --dearmour -o /etc/apt/trusted.gpg.d/metasploit.gpg && rm -rf /var/lib/apt/lists/*
 
 # Setup Folder
 RUN mkdir -p /tools/.bin && mkdir -p /tools/nuclei-sap-templates && mkdir -p /tools/wordlists
