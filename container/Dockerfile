@@ -57,6 +57,7 @@ RUN wget -q https://raw.githubusercontent.com/rapid7/metasploit-framework/master
 # Install additional tools
 RUN python3 -m pip install shodan
 RUN python2 -m pip install pysap[examples] && git clone --depth=1 https://github.com/OWASP/pysap.git /tmp/pysap && mv /tmp/pysap/examples/*.py /tools/.bin/ && mv /tmp/pysap/examples/* /tools/wordlists/ && rm -rf /tmp/pysap
+RUN wget https://github.com/OJ/gobuster/releases/download/v3.6.0/gobuster_Linux_x86_64.tar.gz -O /tmp/gobuster.tar.gz && tar -xvf /tmp/gobuster.tar.gz -C /tools/.bin/ && rm -rf /tmp/gobuster.tar.gz
 
 # Final Setup
 RUN echo "alias ll='ls -al --color=auto'" > /root/.bashrc
