@@ -1,0 +1,9 @@
+id: sap-rfc-gateway-workflow
+info:
+  name: SAP RFC Gateway Workflow
+  author: randomstr1ng
+
+workflows:
+  - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-detect.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-monitor-detect.yaml
