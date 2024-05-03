@@ -7,3 +7,4 @@ workflows:
   - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-detect.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-monitor-detect.yaml
+      - template: /tools/nuclei-sap-templates/sap_rfc/sap-soap-rfc-detection.yaml
