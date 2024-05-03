@@ -1,0 +1,31 @@
+id: sap-soap-rfc-detection
+
+info:
+  name: SAP SOAP RFC CIFS service detection
+  author: sickwell
+  severity: info
+  description: Detection of active SOAP RFC CIFS service which could be used for various types of Remote Functional Calls. Potential adversary can use default account or leaked credentials to call remote functional modules based on account permissions and RFM allowance.
+  tags: sap,webserver,tech,soap,rfc
+
+http:
+  - method: GET
+    path:
+    #default port is 8000, but could be changed based on IFC settings
+      - "{{BaseURL}}/sap/bc/soap/rfc"
+      - "{{BaseURL}}:8000/sap/bc/soap/rfc"      
+
+    matchers-condition: or
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "Logon failed"
+          - "Logon performed in system"
+
+      - type: dsl
+        dsl:
+          - 'contains_any(to_lower(header), "www-authenticate", "sap-system")'
+
+      - type: status
+        status:
+          - 401
