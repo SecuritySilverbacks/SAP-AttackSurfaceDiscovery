@@ -17,7 +17,7 @@ http:
         part: header
         words:
           - "SAP NetWeaver Application Server"
-          - "SAP JAVA"
+          - "AS JAVA"
       - type: word
         part: body
         words:
