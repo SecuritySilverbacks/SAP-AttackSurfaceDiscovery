@@ -1,0 +1,8 @@
+id: sap-netweaver-admin-detection
+
+info:
+  name: SAP NetWeaver JAVA Administrator Portal Detection
+  author: randomstr1ng
+  severity: high
+  description: Detection of SAP NetWeaver JAVA Administrator Portal Detection.
+  tags: sap,tech,java,webservice
