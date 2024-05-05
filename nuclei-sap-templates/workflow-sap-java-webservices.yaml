@@ -4,5 +4,7 @@ info:
   author: randomstr1ng
 
 workflows:
-  - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-portal-detection.yaml
-  - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-netweaver-admin-detection.yaml
+  - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-webservice-detection.yaml
+    subtemplates:
+    - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-portal-detection.yaml
+    - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-netweaver-admin-detection.yaml
