@@ -1,0 +1,30 @@
+id: sap-java-webservice-detection
+
+info:
+  name: SAP NetWeaver Java Webservice Detection
+  author: randomstr1ng
+  severity: info
+  description: Detection of SAP NetWeaver Java Webservice Detection.
+  tags: sap,tech
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/index.jsp"
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: header
+        condition: or
+        words:
+          - "SAP NetWeaver Application Server"
+          - "AS Java"
+      - type: status
+        status:
+          - 302
+      - type: word
+        condition: and
+        words:
+          - "SAP NetWeaver Application Server&nbsp;"
+          - "/startPage"
+        part: body
