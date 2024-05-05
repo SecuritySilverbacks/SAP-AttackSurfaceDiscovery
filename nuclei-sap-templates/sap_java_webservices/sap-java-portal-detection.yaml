@@ -1,10 +1,10 @@
 id: sap-java-portal-detection
 
 info:
-  name: SAP NetWeaver Java Portal Detection
+  name: SAP NetWeaver Java Portal & Fiori Launchpad Detection
   author: randomstr1ng
   severity: info
-  description: Detection of SAP NetWeaver Java Portal (Login) Page Detection.
+  description: Detection of SAP NetWeaver Java Portal (Login) Page & Fiori Launchpad Detection.
   tags: sap,tech
 
 http:
@@ -12,6 +12,8 @@ http:
     redirects: true
     path:
       - "{{BaseURL}}/irj/portal"
+      - "{{BaseURL}}/irj/portal/fiori"
+      - "{{BaseURL}}/fiori"
     matchers-condition: and
     matchers:
       - type: word
@@ -24,4 +26,6 @@ http:
         words:
           - "HREF=\"/com.sap.portal."
           - "com.sap.portal"
+          - "UIPPopupComp"
+          - "UIPPortalPath"
         part: body
