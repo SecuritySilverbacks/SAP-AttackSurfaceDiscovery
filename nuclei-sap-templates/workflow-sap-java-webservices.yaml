@@ -1,0 +1,8 @@
+id: workflow-sap-java-webservices
+info:
+  name: SAP NetWeaver Java Web Services Detection
+  author: randomstr1ng
+
+workflows:
+  - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-portal-detection.yaml
+  - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-netweaver-admin-detection.yaml
