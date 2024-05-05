@@ -3,6 +3,25 @@ id: sap-netweaver-admin-detection
 info:
   name: SAP NetWeaver JAVA Administrator Portal Detection
   author: randomstr1ng
-  severity: high
+  severity: info
   description: Detection of SAP NetWeaver JAVA Administrator Portal Detection.
-  tags: sap,tech,java,webservice
+  tags: sap,tech
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/nwa"
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: header
+        words:
+          - "SAP NetWeaver Application Server"
+          - "SAP JAVA"
+      - type: word
+        part: body
+        words:
+          - "tc~lm~itsam~ui~mainframe~wd/FloorPlanApp"
+      - type: status
+        status:
+          - 302
