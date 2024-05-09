@@ -1,0 +1,47 @@
+id: workflow-sap-all
+info:
+  name: Workflow which includes all SAP templates from the OWASP CBAS - SAP Attack Surface Discovery Project.
+  author: randomstr1ng
+
+workflows:
+# SAP Cloud Connector
+  - template: /tools/nuclei-sap-templates/sap_cloud_connector/sap-cloud-connector-detection.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_cloud_connector/sap-cc-default-credentials.yaml
+# SAPRouter
+  - template: /tools/nuclei-sap-templates/saprouter/sap-router.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/saprouter/sap-router-info-leak.yaml
+# SAP Web Dispatcher
+  - template: /tools/nuclei-sap-templates/sap_web_dispatcher/sap-web-dispatcher-detection.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_web_dispatcher/sap-web-dispatcher-admin-portal.yaml
+# SAP NetWeaver RFC
+  - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-detect.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-monitor-detect.yaml
+      - template: /tools/nuclei-sap-templates/sap_rfc/sap-soap-rfc-detection.yaml
+# SAP NetWeaver Message Server
+  - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-http-detection.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-instance-information-leak.yaml
+  - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-tcp-service-detection.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-check-admin-port.yaml
+      - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-check-monitor-status.yaml
+      - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-internal-service-aclinfo-dump.yaml
+# SAP NetWeaver Internet Communication Manager (ICM)
+  - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-icm-detect.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-webgui.yaml
+      - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-fiori-launchpad.yaml
+      - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-info-leak.yaml
+# SAP NetWeaver Dispatcher
+  - template: /tools/nuclei-sap-templates/sap_dispatcher/sap-dispatcher-detect.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_dispatcher/sap-dispatcher-login-info.yaml
+# SAP NetWeaver JAVA Webservices
+  - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-webservice-detection.yaml
+    subtemplates:
+    - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-portal-detection.yaml
+    - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-netweaver-admin-detection.yaml
