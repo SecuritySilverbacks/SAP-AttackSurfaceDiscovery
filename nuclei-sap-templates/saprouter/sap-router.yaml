@@ -12,13 +12,13 @@ info:
 
 tcp:
   - inputs:
-      - data: 57484f415245594f553f0a
+      - data: "00000000"
         type: hex
 
     host:
       - "{{Hostname}}"
       - "{{Host}}:3299"
-    read-size: 1024
+    read-all: true
 
     matchers:
       - type: word
