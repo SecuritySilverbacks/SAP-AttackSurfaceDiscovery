@@ -17,30 +17,40 @@ banner = """
   SAP Attack Surface Discovery Project                                                 
 """
 
+
 def arguments():
-        description = "Script to enumerate capabilities of the SAP Start Service"
-        usage = "%(prog)s [options]"
-        parser = ArgumentParser(usage=usage, description=description)
-        target = parser.add_argument_group("Target")
-        target.add_argument("-i", "--input-file", dest="IN_FILE", help="Input file / filename", required=True)
-        target.add_argument("-o", "--output-file", dest="OUT_FILE", help="Input file / filename", required=True)
-        target.add_argument("-v", "--verbose", dest="VERBOSE", help="enable verbose output", action="store_true")
-        options = parser.parse_args()
-        return options
+    description = "Script to enumerate capabilities of the SAP Start Service"
+    usage = "%(prog)s [options]"
+    parser = ArgumentParser(usage=usage, description=description)
+    target = parser.add_argument_group("Target")
+    target.add_argument("-i", "--input-file", dest="IN_FILE", help="Input file / filename", required=True)
+    target.add_argument("-o", "--output-file", dest="OUT_FILE", help="Input file / filename", required=True)
+    target.add_argument("-v", "--verbose", dest="VERBOSE", help="enable verbose output", action="store_true")
+    options = parser.parse_args()
+    return options
+
 
 def read_nmap_result(IN_FILE):
-	with open(IN_FILE, "r") as file:
-		return json.dumps(xmltodict.parse(file.read()))
+    with open(IN_FILE, "r") as file:
+        return json.dumps(xmltodict.parse(file.read()))
+
 
 def eval_entry(item):
     if item.get("hostnames") == None:
         return item["address"].get("@addr")
-    else:
-        for entry in item["hostnames"]["hostname"]:
-            if entry["@type"] == "user":
-                return entry["@name"]
-            else:
-                pass
+    elif isinstance(item.get("hostnames")["hostname"], list):
+        if item.get("hostnames") == None or item.get("hostnames")["hostname"][0]["@type"] == "PTR":
+            return item["address"].get("@addr")
+        else:
+            if item["hostnames"]["hostname"][0]["@type"] == "user":
+                return item["hostnames"]["hostname"][0]["@name"]
+    elif isinstance(item.get("hostnames")["hostname"], dict):
+        if item.get("hostnames")["hostname"]["@type"] == "PTR":
+            return item["address"].get("@addr")
+        else:
+            if item["hostnames"]["hostname"]["@type"] == "user":
+                return item["hostnames"]["hostname"]["@name"]
+
 
 def main():
     print(banner)
@@ -69,5 +79,6 @@ def main():
 
     print(f"[*] Targets written to {os.path.abspath(options.OUT_FILE)}")
     print("[*] Done")
+
 
 main()
