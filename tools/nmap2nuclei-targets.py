@@ -72,10 +72,23 @@ def main():
         else:
             for item in data["nmaprun"]["host"]:
                 target = eval_entry(item)
-                for port in item["ports"]["port"]:
+                if type(item["ports"]["port"]) == list:
+                    # if a list, the original code works
+                    for port in item["ports"]["port"]:
+                        if options.VERBOSE:
+                            print(f'{target}:{port.get("@portid")}')
+                        file.writelines(f'{target}:{port.get("@portid")}\n')
+                elif type(item["ports"]["port"]) == dict:
+                    # if a dict, get the portid in a different way
                     if options.VERBOSE:
-                        print(f'{target}:{port.get("@portid")}')
-                    file.writelines(f'{target}:{port.get("@portid")}\n')
+                        print(f'{target}:{item["ports"]["port"]["@portid"]}')
+                    file.writelines(f'{target}:{item["ports"]["port"]["@portid"]}\n')
+                else:
+                    # just in case the object is something we can't handle
+                    print(target, ": Port object type exception: list or dict expected. Recieved:",
+                          type(item["ports"]["port"]))
+                    print(item["ports"])
+                    # would make sense to add sys.exit() here
 
     print(f"[*] Targets written to {os.path.abspath(options.OUT_FILE)}")
     print("[*] Done")
