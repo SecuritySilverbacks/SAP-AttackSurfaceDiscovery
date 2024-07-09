@@ -6,7 +6,7 @@ Helper script to convert nmap scan xml results to a list of ip:port pairs, which
 If a hostname was provided as a input of nmap instead of an ip address, the hostname will be used within the target list. 
 """
 
-import xmltodict, json, os
+import xmltodict, json, os, sys
 from argparse import ArgumentParser
 
 banner = """
@@ -63,32 +63,40 @@ def main():
         # only if single host
         if data["nmaprun"]["runstats"]["hosts"].get("@total") == "1":
             target = eval_entry(data["nmaprun"]["host"])
-            for port in data["nmaprun"]["host"]["ports"]["port"]:
+            if type(data["nmaprun"]["host"]["ports"]["port"]) == list:
+                for port in data["nmaprun"]["host"]["ports"]["port"]:
+                    if options.VERBOSE:
+                        print(f'{target}:{port.get("@portid")}')
+                    file.writelines(f'{target}:{port.get("@portid")}\n')
+            elif type(data["nmaprun"]["host"]["ports"]["port"]) == dict:
                 if options.VERBOSE:
-                    print(f'{target}:{port.get("@portid")}')
-                file.writelines(f'{target}:{port.get("@portid")}\n')
+                    print(f'{target}:{data["nmaprun"]["host"]["ports"]["port"]["@portid"]}')
+                file.writelines(f'{target}:{data["nmaprun"]["host"]["ports"]["port"]["@portid"]}\n')
+            else:
+                print(target, ": Port object type exception: list or dict expected. Recieved:",
+                      type(data["nmaprun"]["host"]["ports"]["port"]))
+                print(data["nmaprun"]["host"]["ports"])
+                sys.exit()
+
 
         # only if multiple hosts
         else:
             for item in data["nmaprun"]["host"]:
                 target = eval_entry(item)
                 if type(item["ports"]["port"]) == list:
-                    # if a list, the original code works
                     for port in item["ports"]["port"]:
                         if options.VERBOSE:
                             print(f'{target}:{port.get("@portid")}')
                         file.writelines(f'{target}:{port.get("@portid")}\n')
                 elif type(item["ports"]["port"]) == dict:
-                    # if a dict, get the portid in a different way
                     if options.VERBOSE:
                         print(f'{target}:{item["ports"]["port"]["@portid"]}')
                     file.writelines(f'{target}:{item["ports"]["port"]["@portid"]}\n')
                 else:
-                    # just in case the object is something we can't handle
                     print(target, ": Port object type exception: list or dict expected. Recieved:",
                           type(item["ports"]["port"]))
                     print(item["ports"])
-                    # would make sense to add sys.exit() here
+                    sys.exit()
 
     print(f"[*] Targets written to {os.path.abspath(options.OUT_FILE)}")
     print("[*] Done")
