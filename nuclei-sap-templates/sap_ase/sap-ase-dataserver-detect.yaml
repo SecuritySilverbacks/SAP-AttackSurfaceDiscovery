@@ -1,7 +1,7 @@
 id: sap-ase-dataserver-detect
 
 info:
-  name: SAP ASE Service Detection
+  name: SAP ASE Dataserver Detection
   author: randomstr1ng
   severity: info
   description: Detection of SAP ASE Dataserver service which is used for storing and managing data in SAP systems.
