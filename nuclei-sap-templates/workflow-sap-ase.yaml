@@ -1,0 +1,8 @@
+id: sap-ase-workflow
+info:
+  name: SAP ASE Database (Sybase) Workflow
+  author: randomstr1ng
+
+workflows:
+  - template: /tools/nuclei-sap-templates/sap_ase/sap-ase-dataserver-detect.yaml
+  - template: /tools/nuclei-sap-templates/sap_ase/sap-ase-backupserver-detect.yaml
