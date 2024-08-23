@@ -24,7 +24,7 @@ RUN mkdir -p /tools/.bin && mkdir -p /tools/nuclei-sap-templates && mkdir -p /to
 ENV PATH="${PATH}:/tools/.bin"
 
 # Setup ERPScan Nmap
-RUN git clone --depth=1 https://github.com/randomstr1ng/nmap-erpscan /tools/nmap-erpscan
+RUN git clone --depth=1 https://github.com/gelim/nmap-sap /tools/nmap-erpscan
 
 # Setup nuclei & install default templates
 RUN VERSION=$(curl -s https://api.pdtm.sh/api/v1/tools/nuclei | jq '.tools[0]["version"]' | tr -d '"') && \
