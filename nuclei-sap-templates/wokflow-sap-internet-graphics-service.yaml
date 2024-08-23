@@ -1,0 +1,9 @@
+id: workflow-sap-internet-graphics-service
+info:
+  name: SAP Internet Graphics Services (IGS) Workflow
+  author: randomstr1ng
+
+workflows:
+  - template: /tools/nuclei-sap-templates/sap_internet_graphics_service/sap-igs-detection.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_internet_graphics_service/CVE-2018-2392.yaml
