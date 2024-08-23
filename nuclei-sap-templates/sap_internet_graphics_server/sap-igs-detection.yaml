@@ -1,10 +1,10 @@
 id: sap-igs-detection
 
 info:
-  name: SAP Internet Graphics HTTP Service (IGS) Detection
+  name: SAP Internet Graphics HTTP Server (IGS) Detection
   author: _generic_human_, randomstr1ng
   severity: info
-  description: Detection of SAP Internet Graphics HTTP Services (IGS). Common ports are within range of 40080/tcp - 49999/tcp
+  description: Detection of SAP Internet Graphics HTTP Server (IGS). Common ports are within range of 40080/tcp - 49999/tcp
   metadata:
     max-request: 1
     hunterhow-query: 'web.body="SAP IGS"&&header.server="SAP Internet Graphics Server"'
