@@ -1,0 +1,37 @@
+*&---------------------------------------------------------------------*
+*& Report ZZ_ENUMERATE_REMOTE_FUNCMODS
+*&---------------------------------------------------------------------*
+*& Author Joris van de Vis (@kloris)
+*&---------------------------------------------------------------------*
+REPORT ZZ_ENUMERATE_REMOTE_FUNCMODS.
+
+PARAMETERS: P_RFCDES LIKE RFCDES-RFCDEST DEFAULT 'Z_TEST'.                   "This is a RFC dest in SM59 pointing to another SAP system with no user/pw in it
+
+TYPES: BEGIN OF T_ITAB,
+         FUNCNAME LIKE TFDIR-FUNCNAME,
+       END OF T_ITAB.
+
+DATA: LT_ITAB TYPE TABLE OF T_ITAB,
+      LS_ITAB LIKE LINE OF LT_ITAB.
+
+* Retreive remote enabled function modules from table TFDIR
+SELECT FUNCNAME FROM TFDIR
+INTO LS_ITAB
+WHERE FMODE = 'R'.
+* and put in itab
+  APPEND LS_ITAB TO LT_ITAB.
+ENDSELECT.
+
+* Loop over itab
+LOOP AT LT_ITAB INTO LS_ITAB.
+* Call remote function in other SAP system and check if it is authenticated or not
+  CALL FUNCTION LS_ITAB-FUNCNAME DESTINATION P_RFCDES
+    EXCEPTIONS
+      OTHERS = 2.
+
+  IF SY-SUBRC <> 2.
+* Implement suitable error handling here
+    WRITE: / 'Unauthentcated RFC Enabled Function Module found:', LS_ITAB-FUNCNAME.
+
+  ENDIF.
+ENDLOOP.
