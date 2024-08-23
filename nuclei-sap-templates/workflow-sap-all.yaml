@@ -36,6 +36,10 @@ workflows:
       - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-webgui.yaml
       - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-fiori-launchpad.yaml
       - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-info-leak.yaml
+# SAP Internet Graphics Service
+  - template: /tools/nuclei-sap-templates/sap_internet_graphics_service/sap-igs-detection.yaml
+    subtemplates:
+      - template: /tools/nuclei-sap-templates/sap_internet_graphics_service/CVE-2018-2392.yaml
 # SAP NetWeaver Dispatcher
   - template: /tools/nuclei-sap-templates/sap_dispatcher/sap-dispatcher-detect.yaml
     subtemplates:
