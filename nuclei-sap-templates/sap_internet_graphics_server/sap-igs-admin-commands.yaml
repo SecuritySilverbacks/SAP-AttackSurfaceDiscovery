@@ -1,0 +1,45 @@
+id: sap-igs-admin-commands
+
+info:
+  name: SAP Internet Graphics HTTP Server (IGS) Administration Commands enumeration
+  author: randomstr1ng
+  severity: critical
+  description: Check if SAP Internet Graphics Server is misconfigured to allow unauthenticated access to administration commands
+  metadata:
+    max-request: 1
+  tags: sap,tech,igs
+
+http:
+    - method: GET
+      host-redirects: true
+      max-redirects: 2
+      path:
+        - "{{BaseURL}}/ADM:STATUS"
+        - "{{BaseURL}}/ADM:STATISTICNEW"
+        - "{{BaseURL}}/ADM:GETLOGFILE"
+
+      matchers-condition: and
+      matchers:
+        - type: status
+          status:
+            - 200
+        - type: word
+          part: header
+          words:
+            - "SAP Internet Graphics Server"
+        - type: word
+          part: body
+          condition: or
+          words:
+            - "SAP IGS Status"
+            - "SAP IGS Statistic"
+            - "trc file:"
+      extractors:
+        - type: xpath
+          part: body
+          xpath:
+            - "/html/head/title"
+        - type: regex
+          part: body
+          regex:
+            - "Internet Graphics Service.[0-9]*.[0-9].[0-9].[0-9]"

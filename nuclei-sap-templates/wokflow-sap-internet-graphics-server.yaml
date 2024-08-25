@@ -7,3 +7,4 @@ workflows:
   - template: /tools/nuclei-sap-templates/sap_internet_graphics_service/sap-igs-detection.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_internet_graphics_service/CVE-2018-2392.yaml
+      - template: /tools/nuclei-sap-templates/sap_internet_graphics_service/sap-igs-admin-commands.yaml
