@@ -1,0 +1,36 @@
+id: sap-igs-admin-config-check
+
+info:
+  name: SAP Internet Graphics HTTP Server (IGS) Trace and Dump status check
+  author: randomstr1ng
+  severity: critical
+  description: Check the tracelevel and dump status of SAP Internet Graphics Server
+  metadata:
+    max-request: 1
+  tags: sap,tech,igs
+
+http:
+    - method: GET
+      host-redirects: true
+      max-redirects: 2
+      path:
+        - "{{BaseURL}}/ADM:SWITCH?dump=status"
+        - "{{BaseURL}}/ADM:SWITCH?tracelevel=status"
+      matchers-condition: and
+      matchers:
+        - type: status
+          status:
+            - 200
+        - type: word
+          part: header
+          words:
+            - "SAP Internet Graphics Server"
+        - type: word
+          part: body
+          words:
+            - "SAP IGS Success"
+      extractors:
+        - type: xpath
+          part: body
+          xpath:
+            - "/html/body"
