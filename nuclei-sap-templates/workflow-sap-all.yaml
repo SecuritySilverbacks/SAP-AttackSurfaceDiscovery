@@ -41,7 +41,7 @@ workflows:
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_internet_graphics_server/CVE-2018-2392.yaml
       - template: /tools/nuclei-sap-templates/sap_internet_graphics_server/sap-igs-admin-commands.yaml
-      - template: /tools/nuclei-sap-templates/sap_internet_graphics_service/sap-igs-admin-config-check.yaml
+      - template: /tools/nuclei-sap-templates/sap_internet_graphics_server/sap-igs-admin-config-check.yaml
 # SAP NetWeaver Dispatcher
   - template: /tools/nuclei-sap-templates/sap_dispatcher/sap-dispatcher-detect.yaml
     subtemplates:
