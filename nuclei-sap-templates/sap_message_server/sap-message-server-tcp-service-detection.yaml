@@ -23,3 +23,8 @@ tcp:
         binary:
           - "4d53475f534552564552004d7367536572766572004554442073656e642050726f787900464e5f5400001e050103"
           - "4d53475f534552564552004d7367536572766572004554442073656e642050726f787900464e5f5400001e000103" # returns a result from internal port
+      - type: regex
+        condition: and
+        regex:
+          - "MSG_SERVER"
+          - "MESSAGE"
