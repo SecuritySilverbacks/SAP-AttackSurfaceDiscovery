@@ -1,0 +1,23 @@
+id: sap-websocket-rfc-http-endpoint-discovery
+
+info:
+  name: SAP WebSocket RFC HTTP endpoint discovery
+  author: randomstr1ng
+  severity: info
+  description: Detection of enabled WebSocket RFC endpoint which which is used by WebSocket Remote Functional Calls.
+  tags: sap,webserver,tech,websocket,rfc
+
+http:
+  - method: GET
+    path:
+        - "{{BaseURL}}/sap/bc/rfc?sap-apc-stateful=true"
+
+    matchers-condition: and
+    matchers:
+      - type: regex
+        part: header
+        regex:
+          - "Connection: close"
+      - type: status
+        status:
+          - 200
