@@ -29,7 +29,7 @@ tcp:
         name: banner
         group: 1
         regex:
-          - '\@0S\@\s\s\s(.{1,125})'
+          - 'SAPMSYST.[0-9]{4}.{27}(.*).{13}INFO_TAB-TDLINE'
       - type: regex
         name: instance_details
         group: 1
