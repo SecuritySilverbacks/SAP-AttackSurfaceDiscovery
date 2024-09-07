@@ -8,4 +8,4 @@ workflows:
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-monitor-detect.yaml
       - template: /tools/nuclei-sap-templates/sap_rfc/sap-soap-rfc-detection.yaml
-  - template: /tools/nuclei-sap-templates/sap-websocket-rfc-http-endpoint-discovery.yaml
+  - template: /tools/nuclei-sap-templates/sap_rfc/sap-websocket-rfc-http-endpoint-discovery.yaml

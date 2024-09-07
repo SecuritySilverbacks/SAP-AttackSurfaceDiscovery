@@ -17,7 +17,7 @@ workflows:
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_web_dispatcher/sap-web-dispatcher-admin-portal.yaml
 # SAP NetWeaver RFC
-  - template: /tools/nuclei-sap-templates/sap-websocket-rfc-http-endpoint-discovery.yaml
+  - template: /tools/nuclei-sap-templates/sap_rfc/sap-websocket-rfc-http-endpoint-discovery.yaml
   - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-detect.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-monitor-detect.yaml
