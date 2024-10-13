@@ -19,7 +19,7 @@ banner = """
 
 
 def arguments():
-    description = "Script to enumerate capabilities of the SAP Start Service"
+    description = "Script to convert nmap scan xml results to a list of ip:port pairs, which can be used as a target list for nuclei scanner."
     usage = "%(prog)s [options]"
     parser = ArgumentParser(usage=usage, description=description)
     target = parser.add_argument_group("Target")
