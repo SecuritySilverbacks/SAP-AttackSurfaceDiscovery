@@ -1,0 +1,108 @@
+id: sap-message-server-http-parameter-enum
+
+info:
+  name: SAP Message Server HTTP service Parameter Enumeration/fuzzing
+  author: randomstr1ng
+  severity: low
+  description: This template will enumerate various security related SAP Profile Parameters via the SAP Message Server HTTP Service.
+  tags: sap,misconfig
+
+http:
+    - raw:
+        - |
+          GET /msgserver/text/parameter?{{parameter}} HTTP/1.1
+          Host: {{Hostname}}
+          User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.88 Safari/537.36
+
+      attack: pitchfork
+      payloads:
+        parameter:
+          - ucon/rfc/active
+          - auth/new_buffering
+          - auth/rfc_authority_check
+          - csi/enable
+          - csi/exception
+          - gw/acl_file
+          - gw/acl_mode
+          - gw/acl_mode_proxy
+          - gw/alternative_hostnames
+          - gw/monitor
+          - gw/prxy_info
+          - gw/reg_info
+          - gw/reg_no_conn_info
+          - gw/sec_info
+          - gw/sim_mode
+          - icf/cors_enabled
+          - icf/set_HTTPonly_flag_on_cookies
+          - icm/HTTP/admin_0
+          - icm/HTTP/allow_invalid_host_header
+          - icm/HTTP/auth_0
+          - icm/HTTP/mod_0
+          - icm/HTTP/samesite
+          - icm/HTTP/ssl_debug_info
+          - icm/HTTPS/verify_client
+          - is/HTTP/sensitive_cookies
+          - is/HTTP/sensitive_headers
+          - login/disable_cpic
+          - login/disable_multi_gui_login
+          - login/disable_password_logon
+          - login/failed_user_auto_unlock
+          - login/fails_to_user_lock
+          - login/min_password_diff
+          - login/min_password_digits
+          - login/min_password_letters
+          - login/min_password_lng
+          - login/min_password_lowercase
+          - login/min_password_specials
+          - login/min_password_uppercase
+          - login/multi_login_users
+          - login/no_automatic_user_sapstar
+          - login/password_hash_algorithm
+          - login/password_logon_usergroup
+          - ms/admin_port
+          - ms/monitor
+          - rdisp/call_system
+          - rec/client
+          - rfc/callback_security_method
+          - rsau/enable
+          - rsau/integrity
+          - sapgui/user_scripting
+          - sec/ral_enabled_for_rfc
+          - service/admin_groups
+          - service/admin_users
+          - service/protectedwebmethods
+          - snc/accept_insecure_cpic
+          - snc/accept_insecure_gui
+          - snc/accept_insecure_r3int_rfc
+          - snc/accept_insecure_rfc
+          - snc/data_protection/max
+          - snc/data_protection/min
+          - snc/data_protection/use
+          - snc/enable
+          - snc/force_login_screen
+          - snc/identity/as
+          - snc/r3int_rfc_qop
+          - snc/r3int_rfc_secure
+          - system/secure_communication
+          - ucon/http/cloud_active
+          - ucon/rfc/active
+          - ucon/rfc/check_blacklist
+          - ucon/websocketrfc/active
+
+      matchers-condition: and
+      matchers:
+        - type: status
+          status:
+            - 200
+        - type: word
+          part: header
+          words:
+            - "Server: SAP Message Server"
+
+      extractors:
+        - type: regex
+          name: PARAMETER
+          part: body
+          group: 1
+          regex:
+            - '^(.*=.*)'
