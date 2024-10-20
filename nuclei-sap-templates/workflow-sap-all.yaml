@@ -26,6 +26,7 @@ workflows:
   - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-http-detection.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-instance-information-leak.yaml
+      - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-http-parameter-enum.yaml
   - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-tcp-service-detection.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-check-admin-port.yaml
