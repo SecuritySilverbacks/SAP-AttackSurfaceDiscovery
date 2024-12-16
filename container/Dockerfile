@@ -54,6 +54,10 @@ RUN mkdir -p /root/.msf4/modules/auxiliary/scanner/sap/ && wget -q https://raw.g
 # Download SAP ICM wordlist
 RUN wget -q https://raw.githubusercontent.com/rapid7/metasploit-framework/master/data/wordlists/sap_icm_paths.txt -O /tools/wordlists/sap_icm_paths.txt && rm -rf /tmp/*
 
+# Setup SNCSCAN
+RUN python3 -m pip install pysap@git+https://github.com/usdAG/pysap_sncscan.git@main-sncscan && git clone --depth=1 https://github.com/usdAG/sncscan /tools/sncscan  \
+    && cd /tools/sncscan && python3 setup.py install && chmod +x /tools/sncscan/sncscan.py && ln -s /tools/sncscan/sncscan.py /tools/.bin/sncscan && rm -rf /tmp/*
+
 # Install additional tools
 RUN python3 -m pip install shodan
 RUN python2 -m pip install pysap[examples] && git clone --depth=1 https://github.com/OWASP/pysap.git /tmp/pysap && mv /tmp/pysap/examples/*.py /tools/.bin/ && mv /tmp/pysap/examples/* /tools/wordlists/ && rm -rf /tmp/pysap
