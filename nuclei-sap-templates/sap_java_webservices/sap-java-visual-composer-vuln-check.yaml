@@ -1,0 +1,35 @@
+id: sap-java-visual-composer-vuln-check
+
+info:
+  name: SAP NetWeaver Java Portal & Fiori Launchpad Detection
+  author: randomstr1ng
+  severity: critical
+  description: SAP NetWeaver Visual Composer Metadata Uploader is not protected with a proper authorization, allowing unauthenticated agent to upload potentially malicious executable binaries that could severely harm the host system
+  tags: sap,tech
+  classification:
+      cve-id: CVE-2025-31324
+  reference:
+    - https://nvd.nist.gov/vuln/detail/CVE-2025-31324
+    - https://redrays.io/blog/critical-sap-netweaver-vulnerability-cve-2025-31324-fixed-actively-exploited-in-the-wild/
+
+http:
+  - method: POST
+    redirects: true
+    path:
+      - "{{BaseURL}}/developmentserver/metadatauploader"
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        condition: and
+        words:
+          - "FAILED"
+      - type: status
+        status:
+          - 200
+      - type: word
+        part: header
+        condition: and
+        words:
+          - "SAP NetWeaver Application Server"
+          - "AS Java"
