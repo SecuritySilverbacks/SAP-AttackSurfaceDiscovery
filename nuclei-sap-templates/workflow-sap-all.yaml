@@ -53,6 +53,7 @@ workflows:
     subtemplates:
     - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-portal-detection.yaml
     - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-netweaver-admin-detection.yaml
+    - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-visual-composer-vuln-check.yaml
 # SAP ASE Database (Sybase)
   - template: /tools/nuclei-sap-templates/sap_ase/sap-ase-dataserver-detect.yaml
   - template: /tools/nuclei-sap-templates/sap_ase/sap-ase-backupserver-detect.yaml
