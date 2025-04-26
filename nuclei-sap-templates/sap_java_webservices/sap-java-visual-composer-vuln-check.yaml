@@ -5,7 +5,7 @@ info:
   author: randomstr1ng
   severity: critical
   description: SAP NetWeaver Visual Composer Metadata Uploader is not protected with a proper authorization, allowing unauthenticated agent to upload potentially malicious executable binaries that could severely harm the host system
-  tags: sap,tech
+  tags: sap,tech,webserver
   classification:
       cve-id: CVE-2025-31324
   reference:
