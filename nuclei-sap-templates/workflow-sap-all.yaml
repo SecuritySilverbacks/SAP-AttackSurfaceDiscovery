@@ -4,25 +4,25 @@ info:
   author: randomstr1ng
 
 workflows:
-# SAP Cloud Connector
+  # SAP Cloud Connector
   - template: /tools/nuclei-sap-templates/sap_cloud_connector/sap-cloud-connector-detection.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_cloud_connector/sap-cc-default-credentials.yaml
-# SAPRouter
+  # SAPRouter
   - template: /tools/nuclei-sap-templates/saprouter/sap-router.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/saprouter/sap-router-info-leak.yaml
-# SAP Web Dispatcher
+  # SAP Web Dispatcher
   - template: /tools/nuclei-sap-templates/sap_web_dispatcher/sap-web-dispatcher-detection.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_web_dispatcher/sap-web-dispatcher-admin-portal.yaml
-# SAP NetWeaver RFC
+  # SAP NetWeaver RFC
   - template: /tools/nuclei-sap-templates/sap_rfc/sap-websocket-rfc-http-endpoint-discovery.yaml
   - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-detect.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_rfc/sap-rfc-gateway-monitor-detect.yaml
       - template: /tools/nuclei-sap-templates/sap_rfc/sap-soap-rfc-detection.yaml
-# SAP NetWeaver Message Server
+  # SAP NetWeaver Message Server
   - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-http-detection.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-instance-information-leak.yaml
@@ -32,28 +32,29 @@ workflows:
       - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-check-admin-port.yaml
       - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-check-monitor-status.yaml
       - template: /tools/nuclei-sap-templates/sap_message_server/sap-message-server-internal-service-aclinfo-dump.yaml
-# SAP NetWeaver Internet Communication Manager (ICM)
+  # SAP NetWeaver Internet Communication Manager (ICM)
   - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-icm-detect.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-webgui.yaml
       - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-fiori-launchpad.yaml
       - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/sap-netweaver-info-leak.yaml
-# SAP Internet Graphics Server
+      - template: /tools/nuclei-sap-templates/sap_internet_communication_manager/cve-2021-40495.yaml
+  # SAP Internet Graphics Server
   - template: /tools/nuclei-sap-templates/sap_internet_graphics_server/sap-igs-detection.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_internet_graphics_server/CVE-2018-2392.yaml
       - template: /tools/nuclei-sap-templates/sap_internet_graphics_server/sap-igs-admin-commands.yaml
       - template: /tools/nuclei-sap-templates/sap_internet_graphics_server/sap-igs-admin-config-check.yaml
-# SAP NetWeaver Dispatcher
+  # SAP NetWeaver Dispatcher
   - template: /tools/nuclei-sap-templates/sap_dispatcher/sap-dispatcher-detect.yaml
     subtemplates:
       - template: /tools/nuclei-sap-templates/sap_dispatcher/sap-dispatcher-login-info.yaml
-# SAP NetWeaver JAVA Webservices
+  # SAP NetWeaver JAVA Webservices
   - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-webservice-detection.yaml
     subtemplates:
-    - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-portal-detection.yaml
-    - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-netweaver-admin-detection.yaml
-    - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-visual-composer-vuln-check.yaml
-# SAP ASE Database (Sybase)
+      - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-portal-detection.yaml
+      - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-netweaver-admin-detection.yaml
+      - template: /tools/nuclei-sap-templates/sap_java_webservices/sap-java-visual-composer-vuln-check.yaml
+  # SAP ASE Database (Sybase)
   - template: /tools/nuclei-sap-templates/sap_ase/sap-ase-dataserver-detect.yaml
   - template: /tools/nuclei-sap-templates/sap_ase/sap-ase-backupserver-detect.yaml
