@@ -1,20 +1,38 @@
-name: ❄️ YAML Lint
+name: YAML Lint
 
 on:
   pull_request:
-    paths:
-      - '**.yaml'
   workflow_dispatch:
 
 jobs:
-  build:
+  yamllint:
+    name: yamllint
     runs-on: ubuntu-latest
     if: github.repository == 'projectdiscovery/nuclei-templates'
+
     steps:
       - uses: actions/checkout@v4
-      - name: Yamllint
+
+      # Detect whether YAML files changed in this PR
+      - name: Check changed files
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            yaml:
+              - '**/*.yml'
+              - '**/*.yaml'
+
+      # If YAML changed -> run yamllint
+      - name: Run yamllint
+        if: steps.changes.outputs.yaml == 'true'
         uses: karancode/yamllint-github-action@v2.1.1
         with:
           yamllint_config_filepath: .yamllint
           yamllint_strict: false
           yamllint_comment: true
+
+      # If NO YAML changed -> still succeed, so required check is satisfied
+      - name: No YAML changes
+        if: steps.changes.outputs.yaml != 'true'
+        run: echo "No YAML changes in this PR; skipping yamllint."
