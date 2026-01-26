@@ -16,6 +16,7 @@ banner = """
   SAP Attack Surface Discovery Project                                                 
 """
 
+d = {}
 
 def arguments():
 	description = "Script to resolve IP addresses to GeoIP locations using the MaxMind GeoLite2 database."
@@ -24,34 +25,46 @@ def arguments():
 	target = parser.add_argument_group("Target")
 	target.add_argument("-i", "--input-file", dest="IP_LIST", help="Path to IP list file", required=True)
 	target.add_argument("-db", "--db-file", dest="GEO_DB", help="Path to GeoLite2 database file", required=True)
+	target.add_argument("-s", "--stats", action="store_true", help="Display country stats", required=False)
 	options = parser.parse_args()
 	return options
+
+def stats(match, ip):
+	
+	if match.country.name in d:
+		d[match.country.name] = d[match.country.name] +1
+	else:
+		d[match.country.name] = 1
+
+	sorted_list = sorted(d.items(), key = lambda x:x[1], reverse = True)
+	return sorted_list
+
+	
+
 
 if __name__ == "__main__":
 	print(banner)
 	options = arguments()
 	reader = geoip2.database.Reader(options.GEO_DB)
 
-	d = dict()
-
+	
+	result = None
 	with open(options.IP_LIST, "r") as f:
 		data = f.readlines()
 		for line in data:
 			ip = line.strip("\n")
 			try:
 				match = reader.city(ip)
-				if match.country.name in d:
-					d[match.country.name] = d[match.country.name] +1
-				else:
-					d[match.country.name] = 1
+				print(f"{ip} - {match.country.name}")
+				if options.stats:
+					result = stats(match, ip)
+					
 			except:
 				pass
 
 	reader.close()
-
-	sorted_list = sorted(d.items(), key = lambda x:x[1], reverse = True)
-
-	for country, count in sorted_list:
-		print(f"{country}:{count}")
-
+	if options.stats and result:
+		print("\n###### Country Stats ######\n")
+		for country, count in result:
+			print(f"{country}: {count}")
 
